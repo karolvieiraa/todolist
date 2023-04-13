@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div id="box" >
+    <h1>Check List</h1>
+    <div class="content"> 
+        <div class="content--add--item">
+            <input type="text" id="input-new-task" placeholder="Digite sua nova task">
+            <button onclick="newTask()" id="btn-new-task" title="Clique aqui para adicionar uma nova task"> +
+                
+            </button>
+       <!--input, botão-->
+        </div>
+
+        <div class="content--body">
+            <!--lista-->
+            <ol id="to-do-list">
+
+            </ol>
+        </div>
+
+    </div>
+</div>
+</body>
+
+<script src="script.js"></script>
+</html>
