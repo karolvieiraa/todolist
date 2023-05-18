@@ -38,21 +38,37 @@ function showValues() {
     list.innerHTML = ''
     for (let i = 0; i < values.length; i++) {
         if (values[i].deleted) {
-            list.innerHTML += `<li class="line-through">${values[i]['name']}<button id='btn-ok' onclick='removeItem("${values[i]['name']}")'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-          </svg></button></li>`
+            list.innerHTML += `
+            <li class="line-through">
+                ${values[i]['name']}
+                <div class="flex">
+                    <button id='btn-ok' onclick='removeItem'>1
+                        <i class="fa-solid fa-xmark icon-size"></i>
+                    </button>
+                    <button id='btn-ok' onclick='riscarItem("${values[i]['name']}")'>2
+                        <i class="fa-solid fa-arrow-rotate-left icon-size"></i>
+                    </button> 
+                </div>
+            </li>`
         }   else {
-
-            list.innerHTML += `<li>${values[i]['name']}<button id='btn-ok' onclick='removeItem("${values[i]['name']}")'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg></button></li>`
-
+            list.innerHTML += `
+            <li>
+                ${values[i]['name']}
+                <div class="flex">
+                <button id='btn-ok' onclick='removeItem'>3
+                    <i class="fa-solid fa-xmark icon-size"></i>
+                </button>
+                <button id='btn-ok' onclick='riscarItem("${values[i]['name']}")'>4
+                    <i class="fa fa-check icon-size"></i>
+                </button>
+                </div>
+            </li>`
         }
     }
 }
 
 
-function removeItem(data) {
+function riscarItem(data) {
     let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]")
     let index = values.findIndex(x => x.name == data)
 
@@ -64,6 +80,15 @@ function removeItem(data) {
     values.splice(index, 1, linha)
     localStorage.setItem(localStorageKey, JSON.stringify(values))
 
+    showValues()
+}
+
+function removeItem(data)
+{
+    let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]")
+    let index = values.findIndex(x => x.name == data)
+    values.splice(index,1)
+    localStorage.setItem(localStorageKey,JSON.stringify(values))
     showValues()
 }
 

@@ -120,3 +120,13 @@ body {
 .line-through {
     text-decoration: line-through;    
 }
+
+.icon-size {
+    font-size: 10px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
