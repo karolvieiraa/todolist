@@ -42,10 +42,10 @@ function showValues() {
             <li class="line-through">
                 ${values[i]['name']}
                 <div class="flex">
-                    <button id='btn-ok' onclick='removeItem'>1
-                        <i class="fa-solid fa-xmark icon-size"></i>
-                    </button>
-                    <button id='btn-ok' onclick='riscarItem("${values[i]['name']}")'>2
+                <button id='btn-ok' onclick='removeItem("${values[i].name}")'>
+                <i class="fa-solid fa-xmark icon-size"></i>
+            </button>
+                    <button id='btn-ok' onclick='riscarItem("${values[i]['name']}")'>
                         <i class="fa-solid fa-arrow-rotate-left icon-size"></i>
                     </button> 
                 </div>
@@ -55,10 +55,10 @@ function showValues() {
             <li>
                 ${values[i]['name']}
                 <div class="flex">
-                <button id='btn-ok' onclick='removeItem'>3
-                    <i class="fa-solid fa-xmark icon-size"></i>
-                </button>
-                <button id='btn-ok' onclick='riscarItem("${values[i]['name']}")'>4
+                <button id='btn-ok' onclick='removeItem("${values[i].name}")'>
+    <i class="fa-solid fa-xmark icon-size"></i>
+</button>
+                <button id='btn-ok' onclick='riscarItem("${values[i]['name']}")'>
                     <i class="fa fa-check icon-size"></i>
                 </button>
                 </div>
@@ -72,24 +72,18 @@ function riscarItem(data) {
     let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]")
     let index = values.findIndex(x => x.name == data)
 
-    const linha = {
-        name: values[index].name,
-        deleted: !values[index].deleted
-    }
-
-    values.splice(index, 1, linha)
+    values[index].deleted = !values[index].deleted
     localStorage.setItem(localStorageKey, JSON.stringify(values))
 
     showValues()
 }
 
-function removeItem(data)
-{
-    let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]")
-    let index = values.findIndex(x => x.name == data)
-    values.splice(index,1)
-    localStorage.setItem(localStorageKey,JSON.stringify(values))
-    showValues()
+function removeItem(data) {
+    let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+    let index = values.findIndex(x => x.name == data);
+    values.splice(index, 1);
+    localStorage.setItem(localStorageKey, JSON.stringify(values));
+    showValues();
 }
 
 showValues()
